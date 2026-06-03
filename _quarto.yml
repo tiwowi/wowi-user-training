@@ -1,0 +1,15 @@
+project:
+  type: default
+  output-dir: outputs
+
+format: 
+  html: 
+    toc: false
+    execute:
+      eval: true
+      echo: false
+      warning: false
+      message: false
+    lang: en-GB
+    css: styles.css
+    embed-resources: true

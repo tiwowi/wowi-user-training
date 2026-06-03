@@ -1,0 +1,162 @@
+---
+title: "Hands-on Training on Identifying Spatial Clusters of High and Low Acute Malnutrition"
+subtitle: "Leveraging geographical coordinates to locate areas with elevated acute malnutrition"
+---
+
+
+```{=html}
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Time</th>
+            <th scope="col">Session</th>
+            <th scope="col">Facilitator</th>
+        </tr>
+    </thead>
+    <tbody>
+        <p id="table-header">Timetable</p>
+        <!---- Feature Day One ------------------------------------------------>
+         <tr>
+            <th scope="row" colspan="3" id="day-one">Day One</th>
+         </tr>
+        <tr>
+            <td class="content-time">09h00min <br>-<br> 09h30min</td>
+            <td class="content-session">Welcoming</td>
+            <td class="facilitator">Halima</td>
+        </tr>
+        <tr>
+            <td class="content-time">09h30min <br>-<br> 10h00min</td>
+            <td class="content-session">Check on Software Installations</td>
+            <td class="facilitator">Tomás</td>
+        </tr>
+        <tr>
+            <td class="content-time">10h00min <br>-<br> 10h30min</td>
+            <td class="content-session">Why caring about spatial analysis in the workd that we do?</td>
+            <td class="facilitator">Halima</td>
+        </tr>
+        <tr>
+            <td class="content-time">10h30min <br>-<br> 11h00min</td>
+            <td class="content-session">
+                What are spatial clusters? How are they detected?
+                <ul>
+                    <li>Concept</li>
+                    <li>How to</li>
+                    <li>Tooling</li>
+                </ul>
+            </td>
+            <td class="facilitator">Tomás</td> 
+        </tr>
+        <tr>
+            <td class="content-time">11h00min <br>-<br> 12h00min</td>
+            <td class="content-session">Introduction to SaTScan Software</td>
+            <td class="facilitator">Tomás</td>
+        </tr>
+            <tr>
+            <td class="content-time">11h00min <br>-<br> 12h00min</td>
+            <td class="content-session">
+                Introduction to wowi software:
+                <ul>
+                    <li>Installing <code>wowi</code> library in R<li>
+                        <ul>
+                            <li>Package Installation</li>
+                            <li>Launching the app onto the web browser</li>
+                        </ul>
+                    <li>Walkthrough <code>wowi</code> user interface (Analysis Steps)</li>
+                </ul>
+                </td>
+            <td class="facilitator">Tomás</td>
+        </tr>
+        <!-- Lunch Break -->
+        <tr>
+            <td class="content-time">12h30min <br>-<br> 13h30min</td>
+            <td>Break: Lunch and Prayers</td>
+            <td></td>
+        </tr>
+
+        <!-- Afternoon sessions -->
+        <tr>
+            <td class="content-time">13h30min <br>-<br> 14h30min</td>
+            <td class="content-session">Data Wrangling
+                <ul>
+                    <li>For Weight-for-Height</li>
+                    <li>For MUAC/MUAC-for-Age</li>
+                    <li>For Combination of above two</li>
+                </ul>
+                <p><i><strong>Objective: </strong>get acquainted with the outlier detection criteria applied in each of the above-mentioned methods.<i><p>
+            </td>
+            <td class="facilitator">Tomás</td>
+        </tr>
+
+        <!-- Run Scan -->
+        <tr>
+            <td class="content-time">14h35min <br>-<br> 15h25min</td>
+            <td class="content-session">Demo: Run Spatial Scan
+                <p><i><strong>Objective: </strong>Get acquainted with the spatial scanning workflow and ouputs.<i><p>
+            </td>
+            <td class="facilitator">Tomás</td>
+        </tr>
+        
+        <!-- Afternoon Break -->
+        <tr>
+            <td class="content-time">15h30min <br>-<br> 13h50min</td>
+            <td>Break: Prayers</td>
+            <td></td>
+        </tr>
+
+        <!-- Afternoon Break -->
+        <tr>
+            <td class="content-time">15h50min <br>-<br> 16h40min</td>
+            <td>Hands-on practice 1
+            <p><i><strong>Focus: </strong>Apply an ideal and preferred data-wrangling process. In this scenario, GPS coordinates come integrated within the anthro file.<i><p>
+            </td>
+            <td class="facilitator">Tomás</td>
+        </tr>
+
+        <!---- Feature Day Two ------------------------------------------------>
+         <tr>
+            <th scope="row" colspan="3" id="day-two">Day Two</th>
+         </tr>
+         <tr>
+            <td class="content-time">09h00min  <br>-<br> 11h00min</td>
+            <td>Hands-on practice 2
+            <p><i><strong>Focus: </strong>Participants will apply a less-ideal, tedious, and error-prone data-wrangling process. In this scenario, GPS coordinates are shared separately from the anthro data.<i><p>
+            </td>
+            <td>Tomás</td>
+         </tr>
+
+         <!---- Understanding the output  ------------------------------------->
+        <tr>
+            <td class="content-time">11h00min <br>-<br> 12h00min</td>
+            <td> Understanding/Interpreting results</td>
+            <td>Tomás</td>
+         </tr>
+
+
+        <!-- Lunch Break -->
+        <tr>
+            <td class="content-time">12h00min <br>-<br> 13h00min</td>
+            <td>Break: Lunch and Prayers</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td class="content-time">13h00min <br>-<br> 14h00min</td>
+            <td> Understanding/Interpreting results (Cont.)</td>
+            <td>Tomás</td>
+         </tr>
+
+         <!-- UNICEF Somalia Feedback -->
+        <tr>
+            <td class="content-time">14h00min <br>-<br> 15h00min</td>
+            <td>Lessons learned from use of spatial results by UNICEF/Nutrition Cluster Somalia</td>
+            <td>Halima</td>
+         </tr>
+
+        <tr>
+            <td class="content-time">15h00min <br>-<br> 15h30min</td>
+            <td>End and next steps</td>
+            <td>Halima</td>
+         </tr>
+    </tbody>
+</table>
+```

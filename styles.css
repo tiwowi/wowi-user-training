@@ -1,0 +1,80 @@
+/* ---- Download Roboto font-family from Google ----------------------------- */
+
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+
+/* ---- Title and subtitle -------------------------------------------------- */
+
+
+h1,
+p.subtitle {
+    color: rgba(157, 172, 124);
+}
+
+#table-header {
+    font-family: Roboto;
+    font-size: 20px;
+    color: rgba(157, 172, 124);
+}
+
+/* ---- Table --------------------------------------------------------------- */
+
+
+table {
+    width: 100%;
+    text-align: left;
+    font-family: Roboto;
+}
+
+
+th[scope="col"] {
+    background-color: rgba(157, 172, 124);
+    color: white;
+}
+
+th {
+    text-align: center;
+}
+
+th.content-time,
+td.content-time {
+    width: 10%;
+    text-align: center;
+}
+
+th.content-session,
+td.content-session {
+    width: 80%;
+}
+
+th.facilitator,
+td.facilitator {
+    width: 10%;
+}
+
+
+/* ---- Table heading and data ---------------------------------------------- */
+
+table,
+th,
+tr,
+td {
+    border: 1px solid rgb(160 160 160);
+    border-collapse: collapse;
+    padding: 0.5rem 1rem;
+}
+
+tr:nth-child(odd) {
+    background-color: rgba(157, 172, 124, 0.16);
+}
+
+
+/* ---- Breaks -------------------------------------------------------------- */
+
+
+#day-one,
+#day-two {
+    background-color: rgba(157, 172, 124, 0.635);
+    text-align: center;
+}
