@@ -29,7 +29,7 @@ table {
 
 
 th[scope="col"] {
-    background-color: rgba(157, 172, 124);
+    background-color: #9dac7c;
     color: white;
 }
 
@@ -66,7 +66,7 @@ td {
 }
 
 tr:nth-child(odd) {
-    background-color: rgba(157, 172, 124, 0.16);
+    background-color: #9dac7c29;
 }
 
 
