@@ -1,0 +1,20 @@
+project:
+  type: default
+  output-dir: outputs
+
+format: 
+  revealjs: 
+    embed-resources: true
+    width: 1280
+    height: 720
+    slide-number: true
+    progress: true
+    pdf-max-pages-per-slide: 1
+    toc: false
+    execute:
+      eval: true
+      echo: false
+      warning: false
+      message: false
+    lang: en-GB
+    css: styles-slides.css

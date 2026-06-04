@@ -1,0 +1,278 @@
+---
+author: "Tomás Zaba"
+date: today
+format: revealjs
+---
+
+```{r}
+#| label: setup
+library(mwana)
+library(dplyr)
+library(kableExtra)
+```
+
+```{r}
+#| label: example2
+#| eval: true
+data <- read.table(
+  file="31csv.csv",
+  header=TRUE,
+  sep=",",
+  dec="."
+)
+```
+
+# `mwana`
+An efficient workflow for plausibility checks and prevalence analysis of wasting in R
+![](mwana.jpeg){.absolute bottom=250 right=5}
+
+## What is `mwana`? {.smaller}
+<br>
+
+- A code that **streamlines data quality checks** of and acute undernutrition **prevalence estimation** from anthropometric data of children aged 6 to 59 months old. 
+
+## What does `mwana` do? {.smaller}
+
+<br>
+
+1. IPC sample size checker
+
+2. Data plausibility checks of acute undernutrition anthropometric data of children 6-59 months old
+
+3. Prevalence estimation of acute undernutrition
+
+4. Reporting of data plausibility checks and prevalence estimation summary outputs
+
+## Checking if IPC AMN sample size requirements are met {.smaller}
+
+<br> 
+
+```{r}
+#| label: example1
+#| eval: true
+anthro.03 |>
+  group_by(district) |> 
+  mw_check_ipcamn_ssreq(
+    cluster = cluster,
+    .source = "survey"
+  ) |> 
+  kable()
+```
+
+<br>
+
++ It checks for: 
+    - Survey
+    - Screening
+    - Sentinel sites
+
+## Plausibility checks with `mwana` {.smaller}
+<br> 
+
+::: {.column width="50%"}
++ Weight-for-height z-scores
++ MUAC
+    - MUAC-for-age z-score
+    - Raw MUAC
+
+::: 
+
+::: {.column width="50%"}
+![](dot-figure-1.png){.absolute top="150" height="500" width="250"}
+:::
+
+## WFHZ {.smaller}
+```{r}
+#| label: wfhz
+#| eval: true
+anthro.01 |>
+  mw_wrangle_age(
+    dos = dos,
+    dob = dob,
+    age = age,
+    .decimals = 2
+  ) |>
+  mw_wrangle_wfhz(
+    sex = sex,
+    weight = weight,
+    height = height,
+    .recode_sex = TRUE
+  ) |>
+  group_by(area) |> 
+  mw_plausibility_check_wfhz(
+    sex = sex,
+    age = age,
+    weight = weight,
+    height = height,
+    flags = flag_wfhz
+  ) |> 
+  group_by(area) |> 
+  mw_neat_output_wfhz() |> 
+  kable()
+```
+
+## MFAZ {.smaller}
+
+```{r}
+#| label: mfaz
+#| eval: true
+data |> 
+  select(Province,Cluster,Gender,Age,Muac,Poondidagi) |> 
+  rename(
+    province = Province,
+    sex = Gender,
+    age = Age,
+    muac = Muac,
+    edema = Poondidagi
+    ) |> 
+    mutate(
+    muac = as.numeric(muac), 
+    age = as.numeric(age)
+    ) |> 
+    mw_wrangle_age(
+    dos = NULL,
+    dob = NULL,
+    age = age,
+    .decimals = 2
+    ) |> 
+    mw_wrangle_muac(
+    sex = sex,
+    muac = muac,
+    age = age,
+    .recode_sex = FALSE,
+    .recode_muac = TRUE,
+    .to = "cm"
+    ) |> 
+    group_by(province) |> 
+    mw_plausibility_check_mfaz(
+    sex = sex,
+    muac = muac,
+    age = age,
+    flags = flag_mfaz
+    ) |> 
+    group_by(province) |> 
+    mw_neat_output_mfaz() |> 
+    select(-c(`Overall score`, `Overall quality`)) |> 
+    kable()
+```
+
+## Raw MUAC {.smaller}
+
++ To be used only when **variable age** is not available
+
+```{r}
+#| label: raw-muac
+#| eval: true
+data |> 
+  select(Province,Cluster,Gender,Muac,Poondidagi) |> 
+  rename(
+    province = Province,
+    sex = Gender,
+    muac = Muac,
+    edema = Poondidagi
+    ) |> 
+    mutate(
+    muac = as.numeric(muac)
+    ) |> 
+    mw_wrangle_muac(
+    sex = sex,
+    muac = muac,
+    .recode_sex = FALSE,
+    .recode_muac = TRUE,
+    .to = "cm"
+    ) |> 
+    group_by(province) |> 
+    mw_plausibility_check_muac(
+    sex = sex,
+    muac = muac, 
+    flags = flag_muac
+    ) |> 
+    group_by(province) |> 
+    mw_neat_output_muac() |> 
+    kable()
+```
+
+# Prevalence 
+
+## WFHZ {.smaller}
+- **GAM by WFHZ and/or edema**
+
+| **ENA results**   | **`mwana` results**   | Difference (`mwana` - ENA) |
+| :---: | :---: | :---: | 
+| All(967): (55) 5.7% (4.4 - 7.4)| All(970): (53), 5.5% (4.0 - 7.0) | - 0.2%
+| All(967): (11) 1.1% (0.6 - 2.2)| All(970): (10), 1.0% (0.2 - 1.8) | - 0.1 %
+| All(967): (44) 4.6% (3.4 - 6.1)| All(970): (43), 4.4% (3.1 - 5.7) |  - 0.2 %
+
+
+## GAM by MUAC and/or edema {.smaller}
+
+```{r}
+data |> 
+  select(Province,Cluster,Gender,Age,Muac,Poondidagi) |> 
+  rename(
+    province = Province,
+    sex = Gender,
+    age = Age,
+    muac = Muac,
+    edema = Poondidagi
+    ) |> 
+    mutate(
+    muac = as.numeric(muac), 
+    age = as.numeric(age)
+    ) |> 
+    mw_wrangle_age(
+    dos = NULL,
+    dob = NULL,
+    age = age,
+    .decimals = 2
+    ) |> 
+    mw_wrangle_muac(
+    sex = sex,
+    muac = muac,
+    age = age,
+    .recode_sex = FALSE,
+    .recode_muac = TRUE,
+    .to = "cm"
+    ) |> 
+    mutate(
+    muac = recode_muac(muac,.to = "mm")
+  ) |> 
+  mw_estimate_prevalence_screening(
+    edema=edema,
+    muac=muac,
+    .by = province
+  ) |> 
+  kable()
+```
+
+## {.smaller}
+
+| **ENA results**   | **`mwana` results**   | Difference (`mwana` - ENA) |
+| :---: | :---: | :---: | 
+| All(1044): (70) 6.7% (5.0 - 8.9)| All(1034): (61), 5.9% (4.1 - 7.7) | - 0.8%
+| All(1044): (28) 2.7% (1.8 - 4.0)| All(1034): (19), 1.8% (0.9 - 2.7) | - 0.9 %
+| All(1044): (42) 4.0% (2.7 - 5.9)| All(1034): (42), 4.1% (2.5 - 5.6) |  0.1 %
+
+<br>
+
+-  **Weighted prevalence**  
+
+| **ENA results**   | **`mwana` results**   | Difference (`mwana` - ENA) |
+| :---: | :---: | :---: | 
+| Not available | All(927,934): (61), 5.7% (3.7 - 7.7) | Not applicable 
+| Not available | All(927,934): (19), 2.0% (0.7 - 3.2) | Not applicable 
+| Not available | All(927,934): (42), 3.7% (2.3 - 5.2) |  Not applicable 
+
+## 
+
+![](image%20copy.png)
+
+## Combined prevalence {.smaller}
+
+| **ENA results**   | **`mwana` results**   | Difference (`mwana` - ENA) |
+| :---: | :---: | :---: | 
+| All(1048): (99) 9.4% (7.5 - 11.9)| All(959): (79), 8.2% (6.1 - 10.3) | 0.9%
+| All(1048): (28) 2.7% (1.8 - 4.0)| All(959): (18), 1.9% (0.9 - 2.9) | - 0.8 %
+| Not reported | All(959): (65), 6.8% (5.0 - 8.7) |  Not applicable 
+
+![](image.png)

@@ -1,0 +1,54 @@
+/* ---- Download Roboto font-family from Google ----------------------------- */
+
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+
+/* ---- Title and subtitle -------------------------------------------------- */
+
+.quarto-light {
+    background-color: #fbfdfd;
+    font-family: Roboto;
+}
+
+h1.title {
+    font-family: Roboto;
+    font-size: 50px;
+    text-align: left;
+    color: rgb(60, 94, 85);
+}
+
+p.subtitle {
+    font-family: Roboto;
+    text-align: left;
+    font-size: 30px;
+    color: rgb(60, 94, 85);
+    margin-top: 30px;
+}
+
+.reveal h1,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    font-family: Roboto;
+    color: rgb(60, 94, 85);
+}
+
+.reveal .slides section.smaller h1 {
+    font-family: Roboto;
+    font-size: 50px;
+    color: rgb(60, 94, 85);
+}
+
+.reveal p,
+.reveal ul,
+.reveal li {
+    font-family: Roboto;
+}
+
+#intro-wowi {
+    font-family: Roboto;
+    font-size: 50px;
+    color: rgb(60, 94, 85);
+}
