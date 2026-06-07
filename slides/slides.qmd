@@ -31,7 +31,7 @@ subtitle: "Leveraging geographical coordinates to locate areas with elevated acu
 ### {.smaller}
 #### In the SMART Methodology
 
-Index of Dispersion
+![](index-of-dispersion.png)
 
 ## 
 ### {.smaller}
@@ -87,7 +87,7 @@ There are several models, each depending on the type of variable that characteri
 :::
 
 ## 
-### nn
+###
 
 ![](scan-tests.png){fig-align="center"}
 
@@ -97,6 +97,22 @@ There are several models, each depending on the type of variable that characteri
 ::: footer
 Learn more: [SaTScan](https://www.satscan.org)
 :::
+
+## {.smaller}
+### Input files
+::::{.columns}
+:::{.column width="33%" text-align="left"}
+![Case file](cases.png)
+:::
+:::{.column  width="33%"}
+![Control file](control.png)
+:::
+:::{.column  width="33%"}
+![Geo Coordinates file](geo-file.png)
+:::
+::::
+
+
 
 #
 ```{=html}
@@ -194,7 +210,9 @@ wowi::ww_run_app()
 ::: {.incremental}
 + **Weight-for-Height z-score** applies the SMART flagging criterion of +/-3 zscores of the survey mean. <br>
 
-+ **Mid-Upper Arm Circumference**: it calculates z-scores of MUAC-for-Age, and then identifies outliers applying the same criterion of +/-3 z-scores of the survey mean. <br>
++ **Mid-Upper Arm Circumference**: it calculates z-scores of MUAC-for-Age, and then identifies outliers applying the same criterion of +/-3 z-scores of the survey mean. <br> 
+ - Then outliers are excluded from the analysis
+ - In the end, acute malnutrition is defined based on absolute [MUAC: < 125 mm]{.mark}
 
 + [**Combined Prevalence**](https://mphimo.github.io/mwana/reference/mw_estimate_prevalence_combined.html): It applyies flagging criterion on weight-for-height and on MUAC-for-Age zscores separately, then it removes flagged records in each.
 
